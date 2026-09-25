@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import  { useState, useEffect, useMemo } from 'react';
 import { 
   Search, 
   Plus, 
@@ -9,13 +9,13 @@ import {
   Moon, 
   Sun, 
   Bookmark, 
-  Folder, 
+   
   Sparkles, 
   LayoutGrid, 
   List, 
   X,
   Globe,
-  Share2
+ 
 } from 'lucide-react';
 
 // Αρχικά δείγματα συνδέσμων (Sample Data)
@@ -137,14 +137,14 @@ export default function App() {
     }
   }, [darkMode]);
 
-  const showToast = (msg) => {
+  const showToast = (msg: string) => {
     setToastMessage(msg);
     setTimeout(() => {
       setToastMessage(null);
     }, 3000);
   };
 
-  const handleCopy = (e, url, id) => {
+  const handleCopy = (e: React.MouseEvent, url: string, id: number | string) => {
     e.stopPropagation();
     navigator.clipboard.writeText(url);
     setCopiedId(id);
@@ -152,13 +152,13 @@ export default function App() {
     setTimeout(() => setCopiedId(null), 2000);
   };
 
-  const handleDelete = (e, id) => {
+  const handleDelete = (e: React.MouseEvent, id: number | string) => {
     e.stopPropagation();
     setBookmarks(prev => prev.filter(b => b.id !== id));
     showToast('Ο σύνδεσμος διαγράφηκε.');
   };
 
-  const handleAddBookmark = (e) => {
+  const handleAddBookmark = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newTitle.trim() || !newUrl.trim()) return;
 
@@ -189,7 +189,7 @@ export default function App() {
   };
 
   // Helper to extract favicon with fallback
-  const getFaviconUrl = (domainUrl) => {
+  const getFaviconUrl = (domainUrl: string) => {
     try {
       const urlObj = new URL(domainUrl);
       return `https://www.google.com/s2/favicons?domain=${urlObj.hostname}&sz=64`;
@@ -395,12 +395,14 @@ export default function App() {
                             src={favicon} 
                             alt={bookmark.title} 
                             className="w-6 h-6 object-contain rounded"
-                            onError={(e) => {
-                              // Fallback if image fails to load
-                              e.target.onerror = null;
-                              e.target.style.display = 'none';
-                              e.target.nextSibling.style.display = 'block';
-                            }}
+                         onError={(e) => {
+  const target = e.currentTarget as HTMLImageElement;
+  target.onerror = null;
+  target.style.display = 'none';
+  if (target.nextElementSibling) {
+    (target.nextElementSibling as HTMLElement).style.display = 'block';
+  }
+}}
                           />
                         ) : null}
                         <Globe className="w-5 h-5 text-indigo-500 hidden" />
@@ -549,7 +551,7 @@ export default function App() {
                   Περιγραφή
                 </label>
                 <textarea
-                  rows="3"
+                 rows={3}
                   placeholder="Σύντομη περιγραφή του ιστότοπου..."
                   value={newDescription}
                   onChange={(e) => setNewDescription(e.target.value)}
