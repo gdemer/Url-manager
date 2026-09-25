@@ -197,7 +197,38 @@ export default function App() {
       return null;
     }
   };
+// 1. Συνάρτηση Εξαγωγής (Export) σε αρχείο .json
+const handleExportData = () => {
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(bookmarks, null, 2));
+  const downloadAnchor = document.createElement('a');
+  downloadAnchor.setAttribute("href", dataStr);
+  downloadAnchor.setAttribute("download", `bookmarks_backup_${new Date().toISOString().slice(0,10)}.json`);
+  document.body.appendChild(downloadAnchor);
+  downloadAnchor.click();
+  downloadAnchor.remove();
+};
 
+// 2. Συνάρτηση Εισαγωγής (Import) από αρχείο .json
+const handleImportData = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const fileReader = new FileReader();
+  if (e.target.files && e.target.files[0]) {
+    fileReader.readAsText(e.target.files[0], "UTF-8");
+    fileReader.onload = (event) => {
+      try {
+        const parsedData = JSON.parse(event.target?.result as string);
+        if (Array.isArray(parsedData)) {
+          setBookmarks(parsedData);
+          localStorage.setItem('linkhub_bookmarks', JSON.stringify(parsedData));
+          alert('Τα δεδομένα εισήχθησαν με επιτυχία!');
+        } else {
+          alert('Μη έγκυρη μορφή αρχείου JSON.');
+        }
+      } catch (err) {
+        alert('Σφάλμα κατά την ανάγνωση του αρχείου.');
+      }
+    };
+  }
+};
   const filteredBookmarks = useMemo(() => {
     return bookmarks.filter(b => {
       const matchesCategory = selectedCategory === 'Όλα' || b.category === selectedCategory;
@@ -238,9 +269,30 @@ export default function App() {
               <p className="text-xs text-slate-400 font-medium hidden sm:block">Οργάνωση & Διαχείριση URLs</p>
             </div>
           </div>
+          <div className="flex gap-2">
+  {/* Κουμπί Export */}
+  <button 
+    onClick={handleExportData}
+    className="px-3 py-1.5 bg-slate-700 text-white rounded-lg hover:bg-slate-600 text-sm font-medium transition"
+  >
+    📥 Εξαγωγή JSON
+  </button>
 
+  {/* Κουμπί Import */}
+  <label className="px-3 py-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-500 text-sm font-medium cursor-pointer transition">
+    📤 Εισαγωγή JSON
+    <input 
+      type="file" 
+      accept=".json" 
+      onChange={handleImportData} 
+      className="hidden" 
+    />
+  </label>
+</div>
           {/* Right Action Controls */}
           <div className="flex items-center gap-2 sm:gap-3">
+
+
             <button
               onClick={() => setIsModalOpen(true)}
               className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-sm font-semibold rounded-xl shadow-md hover:shadow-indigo-500/20 transition-all cursor-pointer"
