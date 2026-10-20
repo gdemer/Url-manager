@@ -70,10 +70,10 @@ const INITIAL_BOOKMARKS = [
   },
   {
     id: '7',
-    title: 'Coursera',
-    url: 'https://www.coursera.org',
-    description: 'Διαδικτυακά μαθήματα από κορυφαία πανεπιστήμια και εταιρείες.',
-    category: 'Εκπαίδευση',
+    title: 'Gmail',
+    url: 'https://mail.google.com',
+    description: 'Υπηρεσία ηλεκτρονικού ταχυδρομείου της Google.',
+    category: 'Εργαλεία',
     createdAt: Date.now() - 40000000
   },
   {
@@ -83,14 +83,114 @@ const INITIAL_BOOKMARKS = [
     description: 'Εργαλείο γραφιστικού σχεδιασμού για δημιουργία παρουσιάσεων και γραφικών.',
     category: 'Εργαλεία',
     createdAt: Date.now() - 30000000
+  },
+    {
+    id: '9',
+    title: 'Cursera',
+    url: 'https://www.cursera.org',
+    description: 'Διαδικτυακά μαθήματα από κορυφαία πανεπιστήμια και εταιρείες.',
+    category: 'Εργαλεία',
+    createdAt: Date.now() - 30000000
+  },
+    {
+    id: '10',
+    title: 'Yep',
+    url: 'https://www.yep.com',
+    description: 'Διαδικτυακά μαθήματα από κορυφαία πανεπιστήμια και εταιρείες.',
+    category: 'Εργαλεία',
+    createdAt: Date.now() - 30000000
+  } ,
+    {
+    id: '11',
+    title: 'Instagram',
+    url: 'https://www.instagram.com',
+    description: 'Κοινωνικό δίκτυο για κοινοποίηση φωτογραφιών και βίντεο.',
+    category: 'Εργαλεία',
+    createdAt: Date.now() - 30000000
+  },
+    {
+    id: '12',
+    title: 'Twitter',
+    url: 'https://www.twitter.com',
+    description: 'Κοινωνικό δίκτυο για κοινοποίηση σύντομων μηνυμάτων και ειδήσεων.',
+    category: 'Εργαλεία',
+    createdAt: Date.now() - 30000000
+  },
+    {
+    id: '13',
+    title: 'Facebook',
+    url: 'https://www.facebook.com',
+    description: 'Κοινωνικό δίκτυο για κοινοποίηση φωτογραφιών και βίντεο.',
+    category: 'Εργαλεία',
+    createdAt: Date.now() - 30000000
+  },
+    {
+    id: '14',
+    title: 'LinkedIn',
+    url: 'https://www.linkedin.com',
+    description: 'Κοινωνικό δίκτυο για επαγγελματική δικτύωση και καριέρα.',
+    category: 'Εργαλεία',
+    createdAt: Date.now() - 30000000
+  },
+    {
+    id: '15',
+    title: 'GetArtCraft',
+    url: 'https://www.getartcraft.com',
+    description: 'Πλατφόρμα για δημιουργούς τέχνης και χειροτεχνίας να μοιράζονται τα έργα τους.',
+    category: 'Εργαλεία',
+    createdAt: Date.now() - 30000000
+  }
+  ,
+    {
+    id: '16',
+    title: 'ΔΕΗ',
+    url: 'https://mydei.dei.gr/el/',
+    description: 'Ηλεκτρονική πλατφόρμα της ΔΕΗ για διαχείριση λογαριασμών και υπηρεσιών ενέργειας.',
+    category: 'Εργαλεία',
+    createdAt: Date.now() - 30000000
+  },
+    {
+    id: '17',
+    title: 'ΕΥΔΑΠ',
+    url: 'https://www.eydap.gr/MyAccount/WaterSupplies/',
+    description: 'Ηλεκτρονική πλατφόρμα της ΕΥΔΑΠ για διαχείριση λογαριασμών και υπηρεσιών ύδρευσης.',
+    category: 'Εργαλεία',
+    createdAt: Date.now() - 30000000
+  },
+    {
+    id: '18',
+    title: 'Cosmote',
+    url: 'https://my.telekom.gr/selfcare/jsp/manage.jsp?_requestid=2917525',
+    description: 'Ηλεκτρονική πλατφόρμα της Cosmote για διαχείριση λογαριασμών και υπηρεσιών τηλεπικοινωνιών.',
+    category: 'Εργαλεία',
+  },
+    {
+    id: '19',
+    title: 'Κτηματολόγιο',
+    url: 'https://www.ktimanet.gr/Myktima/MyKtima/',
+    description: 'Ηλεκτρονική πλατφόρμα του Κτηματολογίου για διαχείριση ακινήτων και υπηρεσιών.',
+    category: 'Εργαλεία',
+    createdAt: Date.now() - 30000000
+  },
+  {
+    id: '20',
+    title: 'ΚΑΕΚ',
+    url: 'https://www.kaek.gr/',
+    description: 'Ηλεκτρονική πλατφόρμα για διαχείριση ΚΑΕΚ.',
+    category: 'Εργαλεία',
+    createdAt: Date.now() - 30000000
   }
 ];
+  
 
 const CATEGORIES = ['Όλα', 'Τεχνολογία', 'Εργαλεία', 'Εκπαίδευση', 'Ειδήσεις', 'Ψυχαγωγία', 'Άλλο'];
 
 export default function App() {
   const [bookmarks, setBookmarks] = useState(() => {
     try {
+      localStorage.clear();
+      console.log(localStorage);  
+
       const saved = localStorage.getItem('app_bookmarks');
       return saved ? JSON.parse(saved) : INITIAL_BOOKMARKS;
     } catch (e) {
@@ -112,8 +212,8 @@ export default function App() {
   const [selectedCategory, setSelectedCategory] = useState('Όλα');
   const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'list'
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [copiedId, setCopiedId] = useState(null);
-  const [toastMessage, setToastMessage] = useState(null);
+  const [copiedId, setCopiedId] = useState<number | string | null>(null);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   // New Bookmark Form State
   const [newTitle, setNewTitle] = useState('');
@@ -123,6 +223,7 @@ export default function App() {
 
   useEffect(() => {
     try {
+     // localStorage.clear();
       localStorage.setItem('app_bookmarks', JSON.stringify(bookmarks));
     } catch (e) {
       console.error('Failed to save bookmarks to LocalStorage', e);
@@ -154,7 +255,7 @@ export default function App() {
 
   const handleDelete = (e: React.MouseEvent, id: number | string) => {
     e.stopPropagation();
-    setBookmarks(prev => prev.filter(b => b.id !== id));
+    setBookmarks((prev: typeof bookmarks) => prev.filter((b: { id: number | string }) => b.id !== id));
     showToast('Ο σύνδεσμος διαγράφηκε.');
   };
 
@@ -230,7 +331,7 @@ const handleImportData = (e: React.ChangeEvent<HTMLInputElement>) => {
   }
 };
   const filteredBookmarks = useMemo(() => {
-    return bookmarks.filter(b => {
+    return bookmarks.filter((b: { title: string; description: string; url: string; category: string }) => {
       const matchesCategory = selectedCategory === 'Όλα' || b.category === selectedCategory;
       const q = searchQuery.toLowerCase();
       const matchesSearch = 
@@ -258,15 +359,14 @@ const handleImportData = (e: React.ChangeEvent<HTMLInputElement>) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
           
           {/* Logo & Title */}
-          <div className="flex items-center gap-3">
-            <div className="p-2.5 bg-gradient-to-tr from-indigo-500 to-purple-600 rounded-xl shadow-md text-white">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="p-2.5 bg-linear-to-tr from-indigo-500 to-purple-600 rounded-xl shadow-md text-white">
               <Bookmark className="w-6 h-6" />
             </div>
             <div>
-              <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-600 leading-tight">
+              <h1 className="text-xl font-bold bg-clip-text text-transparent bg-linear-to-r from-indigo-500 to-purple-600 leading-tight">
                 LinkHub
               </h1>
-              <p className="text-xs text-slate-400 font-medium hidden sm:block">Οργάνωση & Διαχείριση URLs</p>
             </div>
           </div>
           <div className="flex gap-2">
@@ -323,55 +423,59 @@ const handleImportData = (e: React.ChangeEvent<HTMLInputElement>) => {
         {/* Top Control Panel: Search & Filters */}
         <section className="space-y-6 mb-8">
           
-          {/* Search Bar & View Mode Toggle */}
-          <div className="flex flex-col sm:flex-row items-center gap-4">
-            <div className="relative flex-1 w-full">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
-              <input
-                type="text"
-                placeholder="Αναζήτηση βάσει τίτλου, περιγραφής ή URL..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className={`w-full pl-11 pr-4 py-3 rounded-2xl border text-sm outline-none transition-all shadow-sm ${
-                  darkMode 
-                    ? 'bg-slate-800/80 border-slate-700 text-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 placeholder-slate-500' 
-                    : 'bg-white border-slate-200 text-slate-900 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 placeholder-slate-400'
-                }`}
-              />
-              {searchQuery && (
-                <button 
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              )}
-            </div>
+          <div className={`sticky top-16 z-20 -mx-4 px-4 pt-2 pb-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 ${darkMode ? 'bg-slate-900' : 'bg-slate-50'}`}>
+            <p className="text-xs text-slate-400 font-medium hidden sm:block mb-2">Οργάνωση & Διαχείριση URLs</p>
 
-            {/* Grid/List View Switcher */}
-            <div className={`flex items-center p-1 rounded-xl border ${darkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
-              <button
-                onClick={() => setViewMode('grid')}
-                className={`p-2 rounded-lg transition-all ${
-                  viewMode === 'grid' 
-                    ? 'bg-indigo-600 text-white shadow-sm' 
-                    : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-200'
-                }`}
-                title="Προβολή Πλέγματος"
-              >
-                <LayoutGrid className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() => setViewMode('list')}
-                className={`p-2 rounded-lg transition-all ${
-                  viewMode === 'list' 
-                    ? 'bg-indigo-600 text-white shadow-sm' 
-                    : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-200'
-                }`}
-                title="Προβολή Λίστας"
-              >
-                <List className="w-5 h-5" />
-              </button>
+            {/* Search Bar & View Mode Toggle */}
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <div className="relative flex-1 w-full">
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                <input
+                  type="text"
+                  placeholder="Αναζήτηση βάσει τίτλου, περιγραφής ή URL..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className={`w-full pl-11 pr-4 py-3 rounded-2xl border text-sm outline-none transition-all shadow-sm ${
+                    darkMode
+                      ? 'bg-slate-800/80 border-slate-700 text-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 placeholder-slate-500'
+                      : 'bg-white border-slate-200 text-slate-900 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 placeholder-slate-400'
+                  }`}
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                )}
+              </div>
+
+              {/* Grid/List View Switcher */}
+              <div className={`flex items-center p-1 rounded-xl border ${darkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+                <button
+                  onClick={() => setViewMode('grid')}
+                  className={`p-2 rounded-lg transition-all ${
+                    viewMode === 'grid'
+                      ? 'bg-indigo-600 text-white shadow-sm'
+                      : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-200'
+                  }`}
+                  title="Προβολή Πλέγματος"
+                >
+                  <LayoutGrid className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={() => setViewMode('list')}
+                  className={`p-2 rounded-lg transition-all ${
+                    viewMode === 'list'
+                      ? 'bg-indigo-600 text-white shadow-sm'
+                      : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-200'
+                  }`}
+                  title="Προβολή Λίστας"
+                >
+                  <List className="w-5 h-5" />
+                </button>
+              </div>
             </div>
           </div>
 
@@ -421,25 +525,27 @@ const handleImportData = (e: React.ChangeEvent<HTMLInputElement>) => {
               ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5' 
               : 'space-y-3'
           }>
-            {filteredBookmarks.map((bookmark) => {
+            {filteredBookmarks.map((bookmark: typeof INITIAL_BOOKMARKS[number]) => {
               const favicon = getFaviconUrl(bookmark.url);
 
               return (
                 <div
                   key={bookmark.id}
                   onClick={() => window.open(bookmark.url, '_blank', 'noopener,noreferrer')}
-                  className={`group relative flex ${viewMode === 'grid' ? 'flex-col justify-between' : 'flex-row items-center justify-between'} p-5 rounded-2xl border transition-all duration-300 cursor-pointer shadow-sm hover:shadow-xl hover:-translate-y-1 ${
+                  className={`group relative flex ${viewMode === 'grid' ? 'flex-col justify-between p-4' : 'flex-row items-center justify-between p-5'} rounded-2xl border transition-all duration-300 cursor-pointer shadow-sm hover:shadow-xl hover:-translate-y-1 ${
                     darkMode 
                       ? 'bg-slate-800/90 border-slate-700/80 hover:border-indigo-500/50 hover:bg-slate-800' 
                       : 'bg-white border-slate-200/80 hover:border-indigo-300 hover:bg-white'
                   }`}
                 >
                   {/* Content Container */}
-                  <div className={`flex ${viewMode === 'grid' ? 'flex-col' : 'flex-row items-center'} gap-3 w-full pr-16`}>
+                  <div className={`flex ${viewMode === 'grid' ? 'flex-col gap-2' : 'flex-row items-center gap-3'} w-full pr-16`}>
                     
                     {/* Header/Icon */}
                     <div className="flex items-center gap-3">
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 p-2 shadow-inner ${
+                      <div className={`rounded-xl flex items-center justify-center shrink-0 p-2 shadow-inner ${
+                        viewMode === 'grid' ? 'w-9 h-9' : 'w-10 h-10'
+                      } ${
                         darkMode ? 'bg-slate-700' : 'bg-slate-100'
                       }`}>
                         {favicon ? (
@@ -460,11 +566,11 @@ const handleImportData = (e: React.ChangeEvent<HTMLInputElement>) => {
                         <Globe className="w-5 h-5 text-indigo-500 hidden" />
                       </div>
 
-                      <div className="min-w-0">
+                      <div className="min-w-0 flex-1">
                         <h3 className="font-semibold text-base truncate group-hover:text-indigo-500 transition-colors">
                           {bookmark.title}
                         </h3>
-                        <span className="inline-block text-xs font-medium text-slate-400 truncate max-w-[200px]">
+                        <span className="block max-w-full text-xs font-medium text-slate-400 truncate">
                           {bookmark.url.replace(/^https?:\/\/(www\.)?/, '')}
                         </span>
                       </div>
@@ -472,14 +578,14 @@ const handleImportData = (e: React.ChangeEvent<HTMLInputElement>) => {
 
                     {/* Description */}
                     {viewMode === 'grid' && (
-                      <p className={`text-xs mt-2 line-clamp-2 leading-relaxed ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                      <p className={`text-xs line-clamp-1 leading-relaxed ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                         {bookmark.description}
                       </p>
                     )}
                   </div>
 
                   {/* Bottom / Right Info & Actions */}
-                  <div className={`flex items-center ${viewMode === 'grid' ? 'justify-between mt-4 pt-3 border-t border-slate-100 dark:border-slate-700/50' : 'gap-2'}`}>
+                  <div className={`flex items-center ${viewMode === 'grid' ? 'justify-between mt-2 pt-2 border-t border-slate-100 dark:border-slate-700/50' : 'gap-2'}`}>
                     
                     {/* Category Tag */}
                     <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-lg ${
@@ -638,3 +744,13 @@ const handleImportData = (e: React.ChangeEvent<HTMLInputElement>) => {
     </div>
   );
 }
+
+/*
+Οι καρτέλες δημιουργούνται στο τμήμα Bookmarks Display Section του App.tsx,
+ περίπου στις γραμμές 528–535.
+
+Στη γραμμή 528, το filteredBookmarks.map(...) περνάει από κάθε bookmark.
+Στη γραμμή 532, δημιουργείται το στοιχείο <div> που είναι η ίδια η καρτέλα.
+Στη γραμμή 535, ορίζεται η εμφάνισή της, με διαφορετικές κλάσεις για Grid 
+και List.
+*/
