@@ -1,0 +1,66 @@
+
+Πως θα ανεβάσω το project αυτό στο github με εντολές git
+
+9:23 PM
+Αν το project είναι ήδη συνδεδεμένο με το GitHub, άνοιξε PowerShell στο φάκελο του project και εκτέλεσε:
+
+
+git status
+git remote -v
+git add .
+git status
+git commit -m "Περιγραφή των αλλαγών"
+git push -u origin HEAD
+
+Το δεύτερο git status σε βοηθά να ελέγξεις ποια αρχεία 
+θα συμπεριληφθούν πριν κάνεις commit. Αν το git commit πει 
+ότι δεν υπάρχουν αλλαγές, 
+δεν χρειάζεται να κάνεις commit
+
+Αν η εντολή git remote -v δεν εμφανίσει κάποιο remote, 
+πρόσθεσέ το πρώτα:
+
+git remote add origin https://github.com/gdeme/Url-manager.git
+git push -u origin HEAD
+
+Για τις επόμενες αλλαγές αρκούν:
+
+git add .
+git commit -m "Περιγραφή των αλλαγών"
+git push
+
+ο push ανεβάζει τα commits στο GitHub· 
+δεν δημοσιεύει από μόνο του την εφαρμογή ως live site.
+
+Και η δημοσίευση live πως γίνεται;
+
+ο project είναι ήδη έτοιμο για GitHub Pages. Το vite.config.ts έχει base: '/Url-manager/' και το package.json έχει το script deploy με το gh-pages.
+
+Δημοσίευση
+
+Βεβαιώσου ότι έχεις κάνει push τον κώδικα (βλ. προηγούμενα βήματα).
+Τρέξε στο φάκελο του project:
+
+
+npm run deploy
+
+Αυτό κάνει πρώτα build (predeploy) και μετά ανεβάζει 
+το φάκελο dist στο branch gh-pages.
+Στο GitHub, πήγαινε στο repository → Settings → Pages. 
+Στο Source επίλεξε Deploy from a branch, 
+branch gh-pages και φάκελο / (root), και πάτησε Save.
+
+Μετά από 1–2 λεπτά το site θα είναι διαθέσιμο στη διεύθυνση:
+https://gdemer.github.io/Url-manager/
+Το όνομα χρήστη (gdemer) το πήρα από το όνομα του repository 
+gdemer/Url-manager. 
+Στις εντολές git remote της προηγούμενης απάντησης 
+είχα γράψει gdeme· αν δεν συμπίπτουν, 
+έλεγξε τη σωστή διεύθυνση με git remote -v.
+
+Για κάθε νέα αλλαγή: κάνε git add ., git commit, git push, 
+και μετά ξανά npm run deploy για να ενημερωθεί το live site.
+
+Προσοχή: το base: '/Url-manager/' 
+πρέπει να ταυτίζεται με το όνομα του repository, 
+αλλιώς το site θα εμφανιστεί κενό.

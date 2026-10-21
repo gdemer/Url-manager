@@ -179,6 +179,62 @@ const INITIAL_BOOKMARKS = [
     description: 'Ηλεκτρονική πλατφόρμα για διαχείριση ΚΑΕΚ.',
     category: 'Εργαλεία',
     createdAt: Date.now() - 30000000
+  },
+  {
+    id: '21',
+    title: 'Viber',
+    url: 'https://www.viber.com/',
+    description: 'Εφαρμογή για ανταλλαγή μηνυμάτων και κλήσεις μέσω διαδικτύου.',
+    category: 'Εργαλεία',
+    createdAt: Date.now() - 30000000
+  },
+  {
+    id: '22',
+    title: 'Grok',
+    url: 'https://www.grok.com/',
+    description: 'Πλατφόρμα για αναζήτηση και ανάλυση πληροφοριών μέσω AI.',
+    category: 'Εργαλεία',
+    createdAt: Date.now() - 30000000
+  },
+  {
+    id: '23',
+    title: 'Copilot',
+    url: 'https://copilot.github.com/',
+    description: 'Εφαρμογή για υποβοήθηση προγραμματισμού με AI.',
+    category: 'Εργαλεία',
+    createdAt: Date.now() - 30000000
+  },
+  {
+    id: '24',
+    title: 'Gemini',
+    url: 'https://www.gemini.com/',
+    description: 'Πλατφόρμα για διαχείριση και συναλλαγές κρυπτονομισμάτων.',
+    category: 'Εργαλεία',
+    createdAt: Date.now() - 30000000
+  },
+  {
+    id: '25',
+    title: 'Claude',
+    url: 'https://claude.ai/new',
+    description: 'Εφαρμογή για υποβοήθηση προγραμματισμού με AI.',
+    category: 'Εργαλεία',
+    createdAt: Date.now() - 30000000
+  },
+  {
+    id: '26',
+    title: 'Use.ai',
+    url: 'https://use.ai/',
+    description: 'Εφαρμογή για υποβοήθηση προγραμματισμού με AI.',
+    category: 'Εργαλεία',
+    createdAt: Date.now() - 30000000
+  },
+  {
+    id: '27',
+    title: 'Google Antigravity',
+    url: 'https://antigravity.google/',
+    description: 'Antigravity.',
+    category: 'Εργαλεία',
+    createdAt: Date.now() - 30000000
   }
 ];
   
@@ -356,10 +412,10 @@ const handleImportData = (e: React.ChangeEvent<HTMLInputElement>) => {
 
       {/* Navigation Header */}
       <header className={`sticky top-0 z-30 border-b backdrop-blur-md ${darkMode ? 'bg-slate-900/80 border-slate-800' : 'bg-white/80 border-slate-200'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2 sm:gap-4">
           
           {/* Logo & Title */}
-          <div className="flex items-center gap-3 min-w-0">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0 shrink-0">
             <div className="p-2.5 bg-linear-to-tr from-indigo-500 to-purple-600 rounded-xl shadow-md text-white">
               <Bookmark className="w-6 h-6" />
             </div>
@@ -369,18 +425,22 @@ const handleImportData = (e: React.ChangeEvent<HTMLInputElement>) => {
               </h1>
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-1.5 sm:gap-2 ml-auto">
   {/* Κουμπί Export */}
   <button 
     onClick={handleExportData}
-    className="px-3 py-1.5 bg-slate-700 text-white rounded-lg hover:bg-slate-600 text-sm font-medium transition"
+    title="Εξαγωγή JSON"
+    className="px-2.5 sm:px-3 py-1.5 bg-slate-700 text-white rounded-lg hover:bg-slate-600 text-sm font-medium transition"
   >
-    📥 Εξαγωγή JSON
+    📥<span className="hidden md:inline"> Εξαγωγή JSON</span>
   </button>
 
   {/* Κουμπί Import */}
-  <label className="px-3 py-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-500 text-sm font-medium cursor-pointer transition">
-    📤 Εισαγωγή JSON
+  <label
+    title="Εισαγωγή JSON"
+    className="px-2.5 sm:px-3 py-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-500 text-sm font-medium cursor-pointer transition"
+  >
+    📤<span className="hidden md:inline"> Εισαγωγή JSON</span>
     <input 
       type="file" 
       accept=".json" 
@@ -395,7 +455,7 @@ const handleImportData = (e: React.ChangeEvent<HTMLInputElement>) => {
 
             <button
               onClick={() => setIsModalOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-sm font-semibold rounded-xl shadow-md hover:shadow-indigo-500/20 transition-all cursor-pointer"
+              className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-sm font-semibold rounded-xl shadow-md hover:shadow-indigo-500/20 transition-all cursor-pointer"
             >
               <Plus className="w-4 h-4" />
               <span className="hidden sm:inline">Νέος Σύνδεσμος</span>
